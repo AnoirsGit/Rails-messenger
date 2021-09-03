@@ -1,0 +1,48 @@
+<div class="ui grid">
+    <div class="twelve wide stretched column">
+
+    <h3 class="ui dividing header ">Chat</h3>
+    <div class="ui comments chat">
+        <div class="">
+        <% @messages.each do |message| %>
+            <div class="comment">
+                <a class="avatar">
+                <img src="/images/avatar/small/matt.jpg">
+                </a>
+                <div class="content">
+                <a class="author"><%= message.user.username %></a>
+                <div class="metadata">
+                    <span class="date">message.created_at</span>
+                </div>
+                <div class="text">
+                    <%=message.body%>
+                </div>
+                <div class="actions">
+                    <a class="reply">Reply</a>
+                </div>
+                </div>
+            </div>
+        <% end %>
+        </div>
+        <%= form_for(@message, html: { class: "ui reply form", role: "form" }, url: message_path, remote: true) do |f| %>
+        <form class="ui reply form">
+            <div class="ui fluid action input">
+                <%= f.text_field :body %>
+                <%= f.button class: "ui button" %>
+                    <%# <div class="ui button">Send</div> %>
+            </div>
+        <% end %>
+    </div>
+        
+    </div>
+    <div class="four wide column">
+        <div class="ui right vertical menu">
+            <div class="item">
+                <img class="ui mini image" src="https://c.tenor.com/FgUZxUOFOVgAAAAS/hydralisk-starcraft.gif">
+            </div>
+            <a class="item">Features</a>
+            <a class="item">Testimonials</a>
+            <a class="item">Sign-in</a>
+        </div>
+    </div>
+</div>
